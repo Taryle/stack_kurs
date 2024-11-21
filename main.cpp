@@ -1,5 +1,6 @@
 #include "stack.h"
 #include<iostream>
+#include<fstream>
 
 int compareSign(char sign)  {
     switch(sign) {
@@ -14,8 +15,9 @@ int compareSign(char sign)  {
 
 int main () {
     std::string line;
-    std::cout << "Введите математическое выражение" << std::endl;
-    std::cin >> line;
+    std::ifstream in("mathWord");
+    if (in.is_open()) in >> line;
+    in.close();
     
     bool isFirst = true; 
     int max = 0;
@@ -54,6 +56,7 @@ int main () {
         }
     }
 
+    std::cout << line << std::endl;
     for (Stack oper: operations) {
         oper.print();
     }
