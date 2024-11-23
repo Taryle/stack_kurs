@@ -32,17 +32,19 @@ Stack::Stack() {
     head = nullptr;
 }
 
-Node* Stack::pop() {
+char Stack::pop() {
     Node *el = head;
     if (head) {
         head = head->getNext();
+        el->setNext(nullptr);
     }
-    return el;
+    return el->getValue();
 }
 
-void Stack::push(Node *element) {
-    element->setNext(head);
-    head = element;
+void Stack::push(char element) {
+    Node *node = new Node(element);
+    node->setNext(head);
+    head = node;
 }
 
 void Stack::print() {
@@ -53,8 +55,8 @@ void Stack::print() {
     }
 }
 
-Node* Stack::peek() {
-    return head;
+char Stack::peek() {
+    return head->getValue();
 }
 
 bool Stack::isEmpty() {

@@ -16,9 +16,9 @@ class Stack {
 public:
     Stack(Node* head);
     Stack();
-    Node* pop();
-    void push(Node *element);
-    Node* peek();
+    char pop();
+    void push(char element);
+    char peek();
     void print();
     bool isEmpty();
 private:

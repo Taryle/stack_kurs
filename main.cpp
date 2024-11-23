@@ -40,18 +40,18 @@ int main () {
         if (line[i] == ')') j++;
         if (compareSign(line[i])) {
             if (operations[j].isEmpty()) {
-                operations[j].push(new Node(line[i]));
-            } else if (compareSign(line[i]) >= compareSign(operations[j].peek()->getValue())) {
-                operations[j].push(new Node(line[i]));
+                operations[j].push(line[i]);
+            } else if (compareSign(line[i]) >= compareSign(operations[j].peek())) {
+                operations[j].push(line[i]);
             } else {
-                Node* bufHead = operations[j].peek();
-                Node* bufTail;
-                while (!operations[j].isEmpty() && compareSign(line[i]) < compareSign(operations[j].peek()->getValue())) {
-                    bufTail = operations[j].pop();
+                Stack buf;
+                while (!operations[j].isEmpty() && compareSign(line[i]) < compareSign(operations[j].peek())) {
+                    buf.push(operations[j].pop());
                 }
-                operations[j].push(new Node(line[i]));
-                bufTail->setNext(operations[j].peek());
-                operations[j] = Stack(bufHead);
+                operations[j].push(line[i]);
+                while(!buf.isEmpty()) {
+                    operations[j].push(buf.pop());
+                }
             }
         }
     }
