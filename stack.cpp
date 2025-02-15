@@ -37,8 +37,11 @@ char Stack::pop() {
     if (head) {
         head = head->getNext();
         el->setNext(nullptr);
+        return el->getValue();
+    } else {
+        std::cout << "Error, you can't pop empty stack" << std::endl;
+        return '\0';
     }
-    return el->getValue();
 }
 
 void Stack::push(char element) {
