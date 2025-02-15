@@ -19,6 +19,7 @@ int main () {
     if (in.is_open()) in >> line;
     in.close();
     
+    // Цикл для подсчета глубины скобок
     int max = 0;
     int currentDepth = 0;
     for (char c : line) {
@@ -33,17 +34,17 @@ int main () {
         }
     }
 
-
-    Stack operations[max + 1];
-    for (int i = 0,j = max; i < line.length(); i++) {
-        if (line[i] == '(') j--;
-        if (line[i] == ')') j++;
+    Stack operations[max + 1]; // Используется массив Stack для каждой глубины
+    for (int i = 0,j = max; i < line.length(); i++) { // Цикл для обхода каждой глубины
+        if (line[i] == '(') j--; // Увеличение глубины при открытие скобок
+        if (line[i] == ')') j++; // Уменьшение глубины при открытие скобок
         if (compareSign(line[i])) {
-            if (operations[j].isEmpty()) {
+            if (operations[j].isEmpty()) { // Добавление первого оператора
                 operations[j].push(line[i]);
-            } else if (compareSign(line[i]) >= compareSign(operations[j].peek())) {
+            } else if (compareSign(line[i]) >= compareSign(operations[j].peek())) { // Добавление последующих операторов, если они больше или равных по приоритету
                 operations[j].push(line[i]);
             } else {
+                // Добавление последующих операторов, если они меньше по приоритету 
                 Stack buf;
                 while (!operations[j].isEmpty() && compareSign(line[i]) < compareSign(operations[j].peek())) {
                     buf.push(operations[j].pop());

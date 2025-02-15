@@ -1,12 +1,9 @@
 #include<iostream>
 #include "stack.h"
 
-Node::Node(char value, Node *next) {
+Node::Node(char value){
     this->value = value;
-    this->next = next;
 }
-
-Node::Node(char value):Node(value, nullptr){}
 
 void Node::setValue(char value) {
     this->value = value;
@@ -22,10 +19,6 @@ char Node::getValue() {
 
 Node* Node::getNext() {
     return next;
-}
-
-Stack::Stack(Node * head) {
-    this->head = head;
 }
 
 Stack::Stack() {

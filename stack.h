@@ -2,7 +2,6 @@
 
 class Node {
 public:
-    Node(char value, Node *next);
     Node(char value);
     void setValue(char value);
     void setNext(Node *next);
@@ -12,9 +11,9 @@ private:
     char value;
     Node *next;
 };
+
 class Stack {
 public:
-    Stack(Node* head);
     Stack();
     char pop();
     void push(char element);
