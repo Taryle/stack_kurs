@@ -19,20 +19,20 @@ int main () {
     if (in.is_open()) in >> line;
     in.close();
     
-    bool isFirst = true; 
     int max = 0;
-    for (int j = 0, i = 0; i < line.length(); i++) {
-        if (line[i] == '(') {
-            j++;
-            continue;
+    int currentDepth = 0;
+    for (char c : line) {
+        if (c == '(') {
+            currentDepth++;
+            max = std::max(max, currentDepth);
+        } else if (c == ')') {
+            currentDepth--;
+            if (currentDepth < 0) {
+                currentDepth = 0;
+            }
         }
-        if (line[i] == ')' && isFirst) {
-            max = j;
-            isFirst = false;
-            j--;
-        } else if (line[i] == ')') j--;
-        if (j == 0) isFirst = true;
     }
+
 
     Stack operations[max + 1];
     for (int i = 0,j = max; i < line.length(); i++) {
